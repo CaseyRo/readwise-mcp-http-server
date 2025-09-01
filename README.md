@@ -17,6 +17,8 @@ A Node.js HTTP server that provides **proper MCP (Model Context Protocol) over H
 
 ## Installation
 
+### Option 1: Local Installation
+
 1. Install dependencies:
 ```bash
 npm install
@@ -32,6 +34,33 @@ cp .env.example .env
 ACCESS_TOKEN=your_readwise_access_token_here
 PORT=3000
 ```
+
+### Option 2: Docker Installation (Recommended)
+
+1. Create environment file:
+```bash
+cp .env.example .env
+```
+
+2. Configure your environment variables in `.env`:
+```
+ACCESS_TOKEN=your_readwise_access_token_here
+PORT=3000
+NODE_ENV=production
+DEBUG=false
+BASE_URL=https://readwise.io
+```
+
+3. Run with Docker Compose:
+```bash
+# Production
+docker-compose up -d
+
+# Development (with hot reloading)
+docker-compose -f docker-compose.dev.yml up -d
+```
+
+For detailed Docker instructions, see [DOCKER.md](./DOCKER.md).
 
 ## Usage
 
@@ -49,6 +78,32 @@ npm start
 ### Watch Mode
 ```bash
 npm run watch
+```
+
+### Docker Usage
+
+#### Production Mode
+```bash
+# Start the production container
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop the service
+docker-compose down
+```
+
+#### Development Mode (with hot reloading)
+```bash
+# Start the development container
+docker-compose -f docker-compose.dev.yml up -d
+
+# View logs
+docker-compose -f docker-compose.dev.yml logs -f
+
+# Stop the service
+docker-compose -f docker-compose.dev.yml down
 ```
 
 ### Debug Mode
